@@ -1,0 +1,226 @@
+# 100 Javascript Exercises
+
+Adapted from the [Python Exercises of Jeffrey Hu](https://github.com/zhiwehu/Python-programming-exercises)
+[Jeffrey Hu](https://github.com/zhiwehu)
+
+Adaptation by: [Joseph Anthony Debono](https://github.com/jadebono)
+[email Joseph](joe@jadebono.com)
+
+---
+
+## Question 1
+
+Write a program which will find all such numbers which are divisible by 7 but are not a multiple of 5, between 2000 and 3200 (both included). The numbers obtained should be printed in a comma-separated sequence on a single line.
+
+Solution:
+
+```py
+def div_seven():
+    x = []
+    for i in range(2000,3201):
+        if i % 7 == 0 and i % 5 != 0:
+         x.append(str(i))
+    print(",".join(x))
+
+
+def test():
+    for i in range(1, 10):
+        print(i)
+
+
+if __name__ == "__main__":
+    div_seven()
+```
+
+---
+
+## Question 2
+
+Write a program which can compute the factorial of a given numbers. Suppose the following input is supplied to the program: 8 Then, the output should be: 40320
+
+Hints: In case of input data being supplied to the question, take the input from the user using input().
+
+Solution:
+
+```py
+def test_int(n):
+    try:
+        int(n)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+
+def get_val():
+    user_input = input("Please input an integer. Note, any input that is not an integer will be discarded:\n")
+    while (test_int(user_input) == False):
+        user_input = input("Please input an integer. Note, any input that is not an integer will be discarded:\n")
+    return int(user_input)
+
+
+def fac(n):
+    if n == 0:
+        return 1
+    else:
+        return n * fac(n - 1)
+
+
+if __name__ == "__main__":
+    n = get_val()
+    print(fac(n))
+```
+
+---
+
+## Question 3
+
+With a given integral number n, write a program to generate an object that contains (i, i\*i) such that i is an integral number between 1 and n (both included). and then the program should print the object. Suppose the following input is supplied to the program: 8 Then, the output should be: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}
+
+Hints: If the input data is to be supplied, let it supplied from input()
+
+Solution:
+
+```py
+# function to test that input is an integer
+def test_int(n):
+    try:
+        int(n)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+
+# function to get integer
+def get_int():
+    num = "x"
+    while not test_int(num) or int(num) < 1:
+        num = input("please enter an integer. Any other input will be discarded:\t")
+    return int(num)
+
+
+# function to create dictionary
+def create_dic(i):
+    return {i : i * i for i in range(1, i+1)}
+
+
+if __name__ == "__main__":
+    x = get_int()
+    y = create_dic(x)
+    print(y)
+```
+
+---
+
+## Question 4
+
+Write a program which takes a sequence of comma-separated numbers and generates an array and an object which contains every number. Suppose the following input is supplied to the program: 34,67,55,33,12,98
+
+Then, the output should be: ['34', '67', '55', '33', '12', '98'] {'34':34, '67':67, '55':55, '33':33, '12':12, '98':98}
+
+Hints: If the input data is to be supplied, let it supplied by the user using an input() function
+
+Solution:
+
+```py
+# func to validate that CSV contains just ints and comma separators
+def validate_csv(csv):
+    for elem in csv:
+        if not elem.isdigit() and elem not in {","}:
+            return False
+    return True
+
+
+# func to create array
+def create_array(csv):
+    return csv.split(",")
+
+
+# func to create dictionary
+def create_dic(csv):
+    csv_arr = csv.split(",")
+    return {i: i for i in csv_arr}
+
+
+# this func prompts the user to input a CSV, and uses a flag for the while loop
+def inp_csv():
+    x = False
+    while not x:
+        csv = input("Please input a sequence of integers separated only by a comma:\n")
+        if validate_csv(csv):
+            x = True
+            return csv
+        else:
+            print("Invalid input!")
+
+
+if __name__ == "__main__":
+    csv = inp_csv()
+    arr = create_array(csv)
+    dic = create_dic(csv)
+    print(arr, dic, sep='\n')
+```
+
+---
+
+## Question 5
+
+Define a class which has at least two methods:
+
+1. getString: to get a string from console input.
+1. printString: to print the string in upper case.
+
+Also please include simple test function to test the class methods.
+
+Hints:
+Use \_\_init\_\_ method to construct some parameters
+
+Solution:
+
+```py
+class Twup:
+    def __init__(self):
+        self.name = "My name is twup"
+        self.my_str = "No input yet"
+
+    def get_string(self):
+        self.my_str = input("Please input a string:\t")
+
+    def print_string(self):
+        print(self.my_str)
+
+
+
+def run_class():
+   myTwup = Twup()
+   print(myTwup.name)
+   myTwup.print_string()
+   myTwup.get_string()
+   myTwup.print_string()
+
+
+if __name__ == "__main__":
+    run_class()
+```
+
+---
+
+## Question 6
+
+Write a program that calculates and prints the value according to the given formula: Q = Square root of [(2 * C * D)/H]
+
+Following are the fixed values of C and H:
+
+1. C = 50;
+1. H = 30;
+1. D is the variable whose values should be input to your program in a comma-separated sequence, ex: 100,150,180.
+
+Example:
+
+Let us assume the following comma separated input sequence is given to the program: 100,150,180
+
+The output of the program should be: 18,22,24
+
+Hints:
+If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
+
+---
