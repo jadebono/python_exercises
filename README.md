@@ -1,10 +1,10 @@
-# 100 Javascript Exercises
+# 100 Python Exercises
 
-Adapted from the [Python Exercises of Jeffrey Hu](https://github.com/zhiwehu/Python-programming-exercises)
-[Jeffrey Hu](https://github.com/zhiwehu)
+Adapted from the [Python Exercises of Jeffrey Hu](https://github.com/zhiwehu/Python-programming-exercises).
+[Github: Jeffrey Hu](https://github.com/zhiwehu)
 
-Adaptation by: [Joseph Anthony Debono](https://github.com/jadebono)
-[email Joseph](joe@jadebono.com)
+Adaptation by: [Joseph Anthony Debono](https://github.com/jadebono).
+[Email Joseph](joe@jadebono.com)
 
 ---
 
@@ -38,7 +38,9 @@ if __name__ == "__main__":
 
 Write a program which can compute the factorial of a given numbers. Suppose the following input is supplied to the program: 8 Then, the output should be: 40320
 
-Hints: In case of input data being supplied to the question, take the input from the user using input().
+Hints:
+
+1. In case of input data being supplied to the question, take the input from the user using input().
 
 Solution:
 
@@ -76,7 +78,9 @@ if __name__ == "__main__":
 
 With a given integral number n, write a program to generate an object that contains (i, i\*i) such that i is an integral number between 1 and n (both included). and then the program should print the object. Suppose the following input is supplied to the program: 8 Then, the output should be: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}
 
-Hints: If the input data is to be supplied, let it supplied from input()
+Hints:
+
+1. If the input data is to be supplied, let it supplied from input()
 
 Solution:
 
@@ -117,7 +121,9 @@ Write a program which takes a sequence of comma-separated numbers and generates 
 
 Then, the output should be: ['34', '67', '55', '33', '12', '98'] {'34':34, '67':67, '55':55, '33':33, '12':12, '98':98}
 
-Hints: If the input data is to be supplied, let it supplied by the user using an input() function
+Hints:
+
+1. If the input data is to be supplied, let it supplied by the user using an input() function.
 
 Solution:
 
@@ -172,7 +178,8 @@ Define a class which has at least two methods:
 Also please include simple test function to test the class methods.
 
 Hints:
-Use \_\_init\_\_ method to construct some parameters
+
+1. Use \_\_init\_\_ method to construct some parameters.
 
 Solution:
 
@@ -187,7 +194,6 @@ class Twup:
 
     def print_string(self):
         print(self.my_str)
-
 
 
 def run_class():
@@ -221,6 +227,67 @@ Let us assume the following comma separated input sequence is given to the progr
 The output of the program should be: 18,22,24
 
 Hints:
-If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
+
+1. If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
+
+```py
+import math
+
+# validation of the csv string - obviously needed only if the csv comes from the user input
+def validate_csv(csv):
+    tokens = [i for i in csv.split(",")]
+    for elem in tokens:
+        # nested try-except block to test that tokens are either integers or decimals
+        try:
+            int(elem)
+        except Exception:
+            try:
+                float(elem)
+            except Exception:
+                return False
+    return True
+
+# decimals are rounded using banker's rounding. To round up with 0.5 use the decimal module
+def process_arr(csv):
+    ans = []
+    d_arr = []
+    C = 50
+    H = 30
+    for elem in csv.split(","):
+        # conditional to convert elem to int if it is a float
+        if float(elem):
+            d_arr.append(int(round(float(elem))))
+        else:
+            d_arr.append(int(elem))
+    ans = [round(math.sqrt((2 * C * elem)/H)) for elem in d_arr]
+    return ",".join([str(i) for i in ans])
+
+
+if __name__ == "__main__":
+    d_csv = "100.3,150,180"
+    if validate_csv(d_csv):
+        new_csv_a = process_arr(d_csv)
+        print(new_csv_a)
+```
+
+---
+
+## Question 7
+
+Write a program which takes 2 digits, X,Y as input and generates a 2-dimensional array. The element value in the i-th row and j-th column of the array should be i\*j. Note: i=0,1.., X-1; j=0,1,¡­Y-1.
+
+Example: Suppose the following inputs are given to the program: 3,5 Then, the output of the program should be: [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8]]
+
+Hints:
+
+1. Create an array,
+1. The external loop (rows) should create an empty array for each of its iterations and push each array into the parent array.
+1. The inner loop should multiply the current value of row with each of the values of cols and push each product into the current iteration of array[rows].
+
+Solution:
+
+```py
+
+```
 
 ---

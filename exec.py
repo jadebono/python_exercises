@@ -18,90 +18,44 @@ Hints:
 If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
 '''
 
-'''
+import math
+
+# validation of the csv string - obviously needed only if the csv comes from the user input
 def validate_csv(csv):
     tokens = [i for i in csv.split(",")]
     for elem in tokens:
-        try: 
-            int(elem)
+        # nested try-except block to test that tokens are either integers or decimals
+        try:
+            int(elem) 
         except Exception: 
-            return False
+            try:
+                float(elem)
+            except Exception:
+                return False
     return True
-    
-    
+        
+# decimals are rounded using banker's rounding. To round up with 0.5 use the decimal module
+def process_arr(csv):
+    ans = []
+    d_arr = []
+    C = 50
+    H = 30
+    for elem in csv.split(","):
+        # conditional to convert elem to int if it is a float
+        if float(elem):
+            d_arr.append(int(round(float(elem))))
+        else:
+            d_arr.append(int(elem))
+    ans = [round(math.sqrt((2 * C * elem)/H)) for elem in d_arr]
+    return ",".join([str(i) for i in ans])
     
     
 if __name__ == "__main__":
-    a = "1,2,3,4,5"
-    b = "1,2.3,3,4,5"
-    c = "1.2#3^5"
-    d = "Hello world"
-    print(validate_csv(a))
-    print(validate_csv(b))
-    print(validate_csv(c))
-    print(validate_csv(d))
+    d_csv = "100.3,150,180"
+    if validate_csv(d_csv):
+        new_csv_a = process_arr(d_csv)
+        print(new_csv_a)
+            
     
-
-#     import math
-
-# # Fixed values
-# C = 50
-# H = 30
-
-# # Function to validate if input string can be converted to integer
-# def is_integer(n):
-#     try:
-#         int(n)
-#         return True
-#     except ValueError:
-#         return False
-
-# # Get and validate user input
-# user_input = input("Enter values of D in a comma-separated sequence: ").split(',')
-
-# # Initialize an empty list to store the results
-# results = []
-
-# # Loop through the values provided by the user
-# for D_str in user_input:
-#     # Validate that D can be converted to an integer
-#     if is_integer(D_str):
-#         D = int(D_str)
-#         # Calculate Q using the provided formula and round the result to the nearest integer
-#         Q = round(math.sqrt((2 * C * D) / H))
-#         results.append(Q)
-#     else:
-#         print(f"Invalid input: {D_str}. Skipping this value.")
-
-# # Print the results
-# print(",".join(map(str, results)))
-'''
-
-import greek
-
-def count_numbers(n):
-    return [i for i in range(1, n+1)]
-
-
-if __name__ == "__main__":
-    n = 10000
-    print(count_numbers(n))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
