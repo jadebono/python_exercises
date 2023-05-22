@@ -362,7 +362,7 @@ if __name__ == "__main__":
     inp = [i for i in get_input().split(",")]
     # note: .sort() sorts the old array in place without returning a new value. Use sorted to return a new sorted array
     inp.sort()
-    print(",".join(inp))
+    print(",".join(inp))g
 ```
 
 ---
