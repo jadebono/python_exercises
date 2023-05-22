@@ -40,7 +40,8 @@ Write a program which can compute the factorial of a given numbers. Suppose the 
 
 Hints:
 
-1. In case of input data being supplied to the question, take the input from the user using input().
+1. In case of input data being supplied to the question, take the input from the user using input();
+1. Use a try-except block for input validation.
 
 Solution:
 
@@ -80,7 +81,8 @@ With a given integral number n, write a program to generate an object that conta
 
 Hints:
 
-1. If the input data is to be supplied, let it supplied from input()
+1. If the input data is to be supplied, let it supplied from input();
+1. Use a try-except block for input validation.
 
 Solution:
 
@@ -123,7 +125,8 @@ Then, the output should be: ['34', '67', '55', '33', '12', '98'] {'34':34, '67':
 
 Hints:
 
-1. If the input data is to be supplied, let it supplied by the user using an input() function.
+1. If the input data is to be supplied, let it be supplied by the user using an input() function;
+1. Add input validation.
 
 Solution:
 
@@ -280,14 +283,86 @@ Example: Suppose the following inputs are given to the program: 3,5 Then, the ou
 
 Hints:
 
-1. Create an array,
-1. The external loop (rows) should create an empty array for each of its iterations and push each array into the parent array.
+1. Create an array;
+1. The external loop (rows) should create an empty array for each of its iterations and push each array into the parent array;
 1. The inner loop should multiply the current value of row with each of the values of cols and push each product into the current iteration of array[rows].
 
 Solution:
 
 ```py
+# input validation
+def input_validation(i, j):
+    return True if i.isdigit() and j.isdigit() and int(i) and int(j) and int(i) <= 10 and int(j) <= 10 else False
 
+
+# input
+def get_input():
+    flag = False
+    while (not flag):
+        i = input("please input an integer to generate a 2D array. For the sake of this exercise, only integers between 1 and 10 will be accepted:\t")
+        j = input("please input a 2nd integer to generate a 2d array. Only ints between 1 and 10 will be accepted:\t")
+        flag = input_validation(i, j)
+        if (not flag):
+            print("One or more of your inputs are invalid! Please try again.")
+    return int(i), int(j)
+
+
+# array generator
+def gen_arr(i, j):
+    arr = []
+    arr = [[i * j for j in range(0, j)] for i in range(0, i)]
+    return arr
+
+
+if __name__ == "__main__":
+    i, j = get_input()
+    twod_arr = gen_arr(i, j)
+    print(twod_arr)
+
+```
+
+---
+
+## Question 8
+
+Write a program that accepts a comma separated sequence of words as input and prints the words in a comma-separated sequence after sorting them alphabetically.  
+Suppose the following input is supplied to the program: without,hello,bag,world  
+Then, the output should be: bag,hello,without,world
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to from input();
+2. Add input validation to ensure that the supplied string is indeed a comma-separated sequence.
+
+Solution:
+
+```py
+# input validation
+def input_validation(inp):
+    test = [i for i in inp]
+    comma = False
+    for i in test:
+        if i == ",":
+            comma = True
+    return comma
+
+
+# input
+def get_input():
+    flag = False
+    while (not flag):
+        inp = input("Please input a sequence of strings separated by comma:\t")
+        flag = input_validation(inp)
+        if (not flag):
+            print("This is not a comma-separated sequence! Please try again.")
+    return inp
+
+
+if __name__ == "__main__":
+    inp = [i for i in get_input().split(",")]
+    # note: .sort() sorts the old array in place without returning a new value. Use sorted to return a new sorted array
+    inp.sort()
+    print(",".join(inp))
 ```
 
 ---

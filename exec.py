@@ -1,60 +1,46 @@
 '''
-
-Write a program that calculates and prints the value according to the given formula: Q = Square root of [(2 * C * D)/H]
-
-Following are the fixed values of C and H:
-
-1. C = 50;
-1. H = 30;
-1. D is the variable whose values should be input to your program in a comma-separated sequence, ex: 100,150,180.
-
-Example:
-
-Let us assume the following comma separated input sequence is given to the program: 100,150,180
-
-The output of the program should be: 18,22,24
+Write a program that accepts a comma separated sequence of words as input and prints the words in a comma-separated sequence after sorting them alphabetically.  
+Suppose the following input is supplied to the program: without,hello,bag,world  
+Then, the output should be: bag,hello,without,world
 
 Hints:
-If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
+
+1. In case of input data being supplied to the question, it should be assumed to from input();
+2. Add input validation to ensure that the supplied string is indeed a comma-separated sequence.
 '''
 
-import math
+# input validation 
+def input_validation(inp):
+    test = [i for i in inp]
+    comma = False
+    for i in test:
+        if i == ",":
+            comma = True
+    return comma
+    
 
-# validation of the csv string - obviously needed only if the csv comes from the user input
-def validate_csv(csv):
-    tokens = [i for i in csv.split(",")]
-    for elem in tokens:
-        # nested try-except block to test that tokens are either integers or decimals
-        try:
-            int(elem) 
-        except Exception: 
-            try:
-                float(elem)
-            except Exception:
-                return False
-    return True
-        
-# decimals are rounded using banker's rounding. To round up with 0.5 use the decimal module
-def process_arr(csv):
-    ans = []
-    d_arr = []
-    C = 50
-    H = 30
-    for elem in csv.split(","):
-        # conditional to convert elem to int if it is a float
-        if float(elem):
-            d_arr.append(int(round(float(elem))))
-        else:
-            d_arr.append(int(elem))
-    ans = [round(math.sqrt((2 * C * elem)/H)) for elem in d_arr]
-    return ",".join([str(i) for i in ans])
+# input
+def get_input():
+    flag = False
+    while (not flag):
+        inp = input("Please input a sequence of strings separated by comma:\t")
+        flag = input_validation(inp)
+        if (not flag):
+            print("This is not a comma-separated sequence! Please try again.")
+    return inp
     
     
 if __name__ == "__main__":
-    d_csv = "100.3,150,180"
-    if validate_csv(d_csv):
-        new_csv_a = process_arr(d_csv)
-        print(new_csv_a)
+    inp = [i for i in get_input().split(",")]
+    # note: .sort() sorts the old array in place without returning a new value. Use sorted to return a new sorted array
+    inp.sort()
+    print(",".join(inp))
+    
+    
+    
+    
+    
+        
             
     
     
