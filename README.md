@@ -371,11 +371,20 @@ if __name__ == "__main__":
 
 Write a program that accepts sequence of lines as input and prints the lines after making all characters in the sentence capitalized. Suppose the following input is supplied to the program:
 
-Hello world
-Practice makes perfect Then, the output should be:
-HELLO WORLD
+Hello world  
+Practice makes perfect
+
+Then, the output should be:
+
+HELLO WORLD  
 PRACTICE MAKES PERFECT
-Hints: In case of input data being supplied to the question, it should be assumed to be a prompt input from a webpage.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to be from an input function;
+1. Keep offering the user the faculty of inputting lines until the user inputs a "q";
+1. There is no need for input validation, the program will ignore numbers and special characters;
+1. Use the .upper() method.
 
 Solution:
 
