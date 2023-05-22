@@ -366,3 +366,39 @@ if __name__ == "__main__":
 ```
 
 ---
+
+## Question 9
+
+Write a program that accepts sequence of lines as input and prints the lines after making all characters in the sentence capitalized. Suppose the following input is supplied to the program:
+
+Hello world
+Practice makes perfect Then, the output should be:
+HELLO WORLD
+PRACTICE MAKES PERFECT
+Hints: In case of input data being supplied to the question, it should be assumed to be a prompt input from a webpage.
+
+Solution:
+
+```py
+# input function
+def line_inputs():
+    line_arr = []
+    flag = False
+    print("Please type in a line to capitalize. The program will keep accepting lines until you input the letter q")
+    while (not flag):
+        inp = input("Please input a line to capitalize:\t")
+        flag = True if inp == "q" else line_arr.append(inp)
+    return line_arr
+
+# The capitalize function
+def capitalize_arr(inp_arr):
+    for line in inp_arr:
+        print(line.upper())
+
+
+if __name__ == "__main__":
+    inp_arr = line_inputs()
+    capitalize_arr(inp_arr) if len(inp_arr) > 0 else print("you have inputted no lines")
+```
+
+---
