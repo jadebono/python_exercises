@@ -292,33 +292,31 @@ Solution:
 ```py
 # input validation
 def input_validation(i, j):
-    return True if i.isdigit() and j.isdigit() and int(i) and int(j) and int(i) <= 10 and int(j) <= 10 else False
+    return True if (i.isdigit() and j.isdigit()) and (int(i) and int(j)) and (int(i) <= 10 and int(j) <= 10) else False
 
 
 # input
 def get_input():
-    flag = False
-    while (not flag):
-        i = input("please input an integer to generate a 2D array. For the sake of this exercise, only integers between 1 and 10 will be accepted:\t")
-        j = input("please input a 2nd integer to generate a 2d array. Only ints between 1 and 10 will be accepted:\t")
-        flag = input_validation(i, j)
-        if (not flag):
+    while True:
+        i = input("please input no of rows:\t")
+        j = input("please input no of columns:\t")
+        if (not input_validation(i, j)):
             print("One or more of your inputs are invalid! Please try again.")
+        else:
+            break
     return int(i), int(j)
 
 
 # array generator
 def gen_arr(i, j):
-    arr = []
-    arr = [[i * j for j in range(0, j)] for i in range(0, i)]
-    return arr
+    return [[i * j for j in range(0, j)] for i in range(0, i)]
 
 
 if __name__ == "__main__":
+    print("Please input integers to create a 2D array. For the sake of this exercise, keep the numbers to a maximum of 10.")
     i, j = get_input()
     twod_arr = gen_arr(i, j)
     print(twod_arr)
-
 ```
 
 ---
