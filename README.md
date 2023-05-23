@@ -409,3 +409,52 @@ if __name__ == "__main__":
 ```
 
 ---
+
+## Question 10
+
+Write a program that accepts a sequence of whitespace separated words in a single string as input and prints the words in ascending order after removing all duplicate words and sorting them alphanumerically. Output them once more as whitespace-separated string.
+
+Suppose the following input is supplied to the program:  
+hello world and practice makes perfect and hello world again
+
+Then, the output should be:  
+again and hello makes perfect practice world
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
+
+Solution:
+
+```py
+# input validation
+def input_validation(wsv):
+    wsv_arr = [i for i in wsv.split(" ")]
+    return True if len(wsv_arr) > 1 else False
+
+
+# input
+def get_input():
+    wsv = input("Please input your whitespace-separated string here:\t")
+    while True:
+        if (not input_validation(wsv)):
+            wsv = input("Your input did not consist of whitespace-separated values. Please try again:\t")
+        else:
+            break
+    return wsv
+
+
+# sort function
+def sort_arr(wsv):
+    #  no need to convert set to list again since you're converting it to a whitespace-separated string once more.
+    return (" ").join(sorted(set([i for i in wsv.split(" ")])))
+
+
+if __name__ == "__main__":
+    print("Please input a string of words separated by whitespace. This program will remove all duplicate words and print them out in ascending order")
+    wsv = get_input()
+    sorted_wsv = sort_arr(wsv)
+    print(sorted_wsv)
+```
+
+---
