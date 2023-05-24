@@ -571,16 +571,73 @@ if __name__ == "__main__":
 
 ## Question 13
 
-Write a program that accepts a sentence and calculate the number of letters and digits. Suppose the following input is supplied to the program: hello world! 123 Then, the output should be:
+Write a program that accepts a sentence and calculate the number of upper case letters and lower case letters. Suppose the following input is supplied to the program: Hello world! Then, the output should be:
 
-1. LETTERS 10
-1. DIGITS 3
+UPPER CASE 1
+LOWER CASE 9
 
 Hints:
 
-1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Input validation not needed for this one.
 
 ```py
+def get_string():
+    return input("Please input a sentence or sequence of characters. The program will count the number of letters and digits supplied:\t")
+
+
+def count_letters_and_digits(input_str):
+    letter_counter = 0
+    digit_counter = 0
+    for elem in input_str:
+        if elem.isalpha():
+            letter_counter += 1
+        elif elem.isdigit():
+            digit_counter += 1
+    return f'The number of letters in your string is {letter_counter} while the number of digits is {digit_counter}.'
+
+
+if __name__ == "__main__":
+    my_str = get_string()
+    get_results = count_letters_and_digits(my_str)
+    print(get_results)
+```
+
+---
+
+## Question 14
+
+Write a program that accepts a sentence and calculate the number of upper case letters and lower case letters. Suppose the following input is supplied to the program: Hello world! Then, the output should be:
+
+1. UPPER CASE 1
+1. LOWER CASE 9
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Use .isupper() and .islower() for this problem as only these two methods will restrict their counting to uppercase and lowercase letters;
+1. Input validation not needed for this one.
+
+```py
+def get_string():
+    return input("Please input a sentence or sequence of characters. The program will count the number of lowercase and uppercase letters in your input:\t")
+
+
+def count_lower_and_upper(input_str):
+    lower_counter = 0
+    upper_counter = 0
+    for elem in input_str:
+        if elem.islower():
+            lower_counter += 1
+        elif elem.isupper():
+            upper_counter += 1
+    return f'The number of lowercase letters in your string is {lower_counter} while the number of uppercase ones is {upper_counter}.'
+
+
+if __name__ == "__main__":
+    my_str = get_string()
+    get_results = count_lower_and_upper(my_str)
+    print(get_results)
 
 ```
 
