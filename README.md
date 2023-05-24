@@ -533,6 +533,54 @@ Hints:
 Solution:
 
 ```py
+# input validation. This function must validate that the inputs are integers
+def input_validation(a, b):
+    try:
+        int(a) and int(b)
+        return True
+    except Exception:
+        return False
+
+
+# input function
+def get_ints():
+    print("For the following code, only integers will be excepted, nothing else.")
+    while True:
+        a = input("Please input an integer:\t")
+        b = input("Please input another integer:\t")
+        if (not input_validation(a, b)):
+            print("invalid inputs! Try again.")
+        else:
+            break
+    n_arr = sorted([int(a), int(b)])
+    return n_arr[0], n_arr[1]
+
+
+# the digit analyser function
+def is_even(a, b):
+    return "".join([str(i) for i in range(a, b + 1) if all(int(elem) % 2 == 0 for elem in str(i))])
+
+
+if __name__ == "__main__":
+    a, b = get_ints()
+    csv_ints = is_even(a, b)
+    print(csv_ints)
+```
+
+---
+
+## Question 13
+
+Write a program that accepts a sentence and calculate the number of letters and digits. Suppose the following input is supplied to the program: hello world! 123 Then, the output should be:
+
+1. LETTERS 10
+1. DIGITS 3
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
+
+```py
 
 ```
 
