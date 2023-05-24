@@ -81,7 +81,7 @@ With a given integral number n, write a program to generate an object that conta
 
 Hints:
 
-1. If the input data is to be supplied, let it supplied from input();
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
 1. Use a try-except block for input validation.
 
 Solution:
@@ -125,7 +125,7 @@ Then, the output should be: ['34', '67', '55', '33', '12', '98'] {'34':34, '67':
 
 Hints:
 
-1. If the input data is to be supplied, let it be supplied by the user using an input() function;
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
 1. Add input validation.
 
 Solution:
@@ -231,7 +231,8 @@ The output of the program should be: 18,22,24
 
 Hints:
 
-1. If the output received is in decimal form, it should be rounded off to its nearest value (for example, if the output received is 26.0, it should be printed as 26). In case of input data being supplied to the question, it should be assumed to be from input().
+1. If the input received is in decimal form, it should be rounded off to its nearest value (for example, if the input received is 26.0, it should be printed as 26);
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
 
 ```py
 import math
@@ -249,6 +250,7 @@ def validate_csv(csv):
             except Exception:
                 return False
     return True
+
 
 # decimals are rounded using banker's rounding. To round up with 0.5 use the decimal module
 def process_arr(csv):
@@ -285,7 +287,8 @@ Hints:
 
 1. Create an array;
 1. The external loop (rows) should create an empty array for each of its iterations and push each array into the parent array;
-1. The inner loop should multiply the current value of row with each of the values of cols and push each product into the current iteration of array[rows].
+1. The inner loop should multiply the current value of row with each of the values of cols and push each product into the current iteration of array[rows];
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
 
 Solution:
 
@@ -329,7 +332,7 @@ Then, the output should be: bag,hello,without,world
 
 Hints:
 
-1. In case of input data being supplied to the question, it should be assumed to from input();
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
 2. Add input validation to ensure that the supplied string is indeed a comma-separated sequence.
 
 Solution:
@@ -379,7 +382,7 @@ PRACTICE MAKES PERFECT
 
 Hints:
 
-1. In case of input data being supplied to the question, it should be assumed to be from an input function;
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
 1. Keep offering the user the faculty of inputting lines until the user inputs a "q";
 1. There is no need for input validation, the program will ignore numbers and special characters;
 1. Use the .upper() method.
@@ -396,6 +399,7 @@ def line_inputs():
         inp = input("Please input a line to capitalize:\t")
         flag = True if inp == "q" else line_arr.append(inp)
     return line_arr
+
 
 # The capitalize function
 def capitalize_arr(inp_arr):
@@ -455,6 +459,81 @@ if __name__ == "__main__":
     wsv = get_input()
     sorted_wsv = sort_arr(wsv)
     print(sorted_wsv)
+```
+
+---
+
+## Question 11
+
+Write a program which accepts a sequence of comma separated 4 digit binary numbers as its input and then check whether they are divisible by 5 or not. The numbers that are divisible by 5 are to be printed in a comma separated sequence.
+
+Suppose the following input: 0100,0011,1010,1001 Then the output should be: 1010.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
+
+Solution:
+
+```py
+# input validation. This function must validate that there are commas in the sequence, that once the string is split, each element is
+# in fact 4 characters long, and that each of the characters in each element corresponds to 1 or 0, meaning that it can resolve to a
+# binary number.
+def input_validation(csbs):
+    if "," in list(csbs):
+        bins_list = csbs.split(",")
+        # test that each element in the bins_list is in fact 4 characters long
+        for i in bins_list:
+            if len(i) != 4:
+                return False
+        #  take every elem in bins_list and test that it is a binary
+        for elem in bins_list:
+            # check that every char in elem is to be found in "01"
+            for i in elem:
+                if i not in "01":
+                    return False
+    # if no comma is found in the string
+    else:
+        return False
+    #  returns True if all requirements are satisfied
+    return True
+
+
+# input function
+def get_binaries():
+    csbs = input("Please input a sequence of comma-separated 4 digit binary numbers. No other input will be accepted:\t")
+    while True:
+        if (not input_validation(csbs)):
+            csbs = input("Your input was invalid. Please try again:\t")
+        else:
+            break
+    return csbs.split(",")
+
+# the binary division
+def bin_div(bin_arr):
+    csbs_arr = [i for i in bin_arr if int(i, 2) % 5 == 0]
+    print(",".join(csbs_arr)) if len(csbs_arr) > 0 else print("None of your supplied binary numbers is divisible by 5.")
+
+
+if __name__ == "__main__":
+    csbs = get_binaries()
+    bin_div(csbs)
+```
+
+---
+
+## Question 12
+
+Write a program, which will take two numbers (such as 1000 and 3000) and find all such numbers between those two numbers (both included) such that each digit of the number is an even number. The numbers obtained should be printed in a comma-separated sequence on a single line.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function.
+
+Solution:
+
+```py
+
 ```
 
 ---
