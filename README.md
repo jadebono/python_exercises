@@ -642,3 +642,80 @@ if __name__ == "__main__":
 ```
 
 ---
+
+## Question 15a
+
+Write a program that computes the value of a+aa+aaa+aaaa with a given digit as the value of a. Suppose the following input is supplied to the program: 9 Then, the output should be: 11106.
+
+Hints:
+
+1. Only ask the user to supply the value to represent "a" in the sequence "a+aa+aaa+aaaa";
+1. To be clear, the user must output the sum of "9 + 99 + 999 + 9999" given a value of 9 NOT "9 + (9*9) + (9*9*9) + (9*9*9*9)";
+1. Add input validation to ensure that the supplied value is an integer.
+
+```py
+def validate_input(n):
+    return True if n.isdigit() else False
+
+def get_input():
+    n = input("Please input an integer value for 'a' to calculate the value of a+aa+aaa+aaaa. Only integers will be accepted:\t")
+    while True:
+        if (not validate_input(n)):
+            n = input("You did not input a integer. Please do so:\t")
+        else:
+            break
+    return int(n)
+
+def calculate_value(n):
+    a_counter = 0
+    for elem in "a+aa+aaa+aaaa".split("+"):
+        # This line first turns an iteration of n into a string for every number in the range of the length of elem
+        # Then it puts that str(n) into a list, which is then joined into a single string and finally turned into an integer that can
+        # be added to a_counter
+        a_counter += int("".join([str(n) for i in range(len(elem))]))
+    print(a_counter)
+
+
+if __name__ == "__main__":
+    n = get_input()
+    calculate_value(n)
+```
+
+---
+
+## Question 15b
+
+Write a program that computes the value of a+aa+aaa+aaaa with a given digit as the value of a. Each cluster of a is an exponent of a multiplied by itself for the number of iterations in its sequence. Suppose the following input is supplied to the program: 9 Then, the output should be: 11106.
+
+Hints:
+
+1. Only ask the user to supply the value to represent "a" in the sequence "a+aa+aaa+aaaa";
+1. To be clear, the user must output the sum of "9 + (9*9) + (9*9*9) + (9*9*9*9)" given a value of 9 NOT the sum of "9 + 99 + 999 + 9999";
+1. Add input validation to ensure that the supplied value is an integer.
+
+```py
+def validate_input(n):
+    return True if n.isdigit() else False
+
+def get_input():
+    n = input("Please input an integer value for 'a' to calculate the value of a+aa+aaa+aaaa. Only integers will be accepted:\t")
+    while True:
+        if (not validate_input(n)):
+            n = input("You did not input a integer. Please do so:\t")
+        else:
+            break
+    return int(n)
+
+def calculate_value(n):
+    a_counter = 0
+    for elem in "a+aa+aaa+aaaa".split("+"):
+       a_counter += n ** len(elem)
+    print(a_counter)
+
+
+if __name__ == "__main__":
+    n = get_input()
+    calculate_value(n)
+```
+
+---
