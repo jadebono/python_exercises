@@ -719,3 +719,53 @@ if __name__ == "__main__":
 ```
 
 ---
+
+## Question 16
+
+use map() to return an array containing the square of each odd number in another array. The array is provided by a sequence of comma-separated numbers. Suppose the following input is supplied to the program: 1,2,3,4,5,6,7,8,9 Then the output should be: 1,9,25,49,81
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Python's map() function applies a function taken as an argument together with another argument to which you want to apply the function;
+1. map() submits each item of a submitted list as an argument to the function it takes as well, so map(this_func, this_list) submits each item of this_list as a single argument to this_func;
+1. "is not" is more Pythonic than !=;
+1. You can use a generator expression to produce values only when they're needed, instead of a list that generates all possible values using unnecessary memory in the process;
+1. You can then transform the generator object into a list;
+1. Add input validation.
+   '''
+
+```py
+def validate_input(csv_str):
+    return True if "," in list(csv_str) and all([i.isdigit() for i in csv_str.split(",")]) else False
+
+
+def get_input():
+    csv_str = input("Please input a comma-separated sequence of integers. Only integers will be accepted.\t")
+    while True:
+        if (not validate_input(csv_str)):
+            csv_str = input("Invalid input! Please try again:\t")
+        else:
+            break
+    return [int(i) for i in csv_str.split(",")]
+
+
+def square_odd(n):
+    return str(n ** 2)  if n % 2 != 0 else None
+
+
+if __name__ == "__main__":
+    my_csv = get_input()
+    squared_odd_str = map(square_odd, my_csv)
+    print(",".join(i for i in squared_odd_str if i is not None))
+```
+
+---
+
+## Question 17
+
+```py
+
+```
+
+---
