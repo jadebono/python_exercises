@@ -764,6 +764,77 @@ if __name__ == "__main__":
 
 ## Question 17
 
+Write a program that computes the net amount of a bank account based a transaction log from console input. The transaction log format is shown as following: D 100 W 200 D means deposit while W means withdrawal. Suppose the following input is supplied to the program: D 300 D 300 W 200 D 100 Then, the output should be: 500.
+
+Hints:
+
+1. Do not take user input for this one;
+1. Provide the input as any type you like;
+1. Provide validation to ensure that the transaction_log contains only valid data before processing the data.
+
+Solution:
+
+```py
+transaction_log = "D 300 D 300 W 200 D 100"
+
+
+def is_tuple_valid(tp):
+    # returns True if each tuple contains a D/W and a integer, false otherwise
+    return True if (tp[0] == "D" or tp[0] == "W") and tp[1].isdigit() else False
+
+
+# split log into tuples and check that every one of them contains either D/W and an integer
+def check_valid_transaction_log(log_list):
+    # check that there is an even number of items in list
+    if len(log_list) % 2 == 0:
+        tuple_log = [(elem, (log_list[i+1])) for i, elem in enumerate(log_list) if i % 2 == 0]
+        # validate each tuple in tuple_log and return True if so, else False
+        return True if all([is_tuple_valid(i) for i in tuple_log]) else False
+    return False
+
+def compute_current_net(log_list):
+    deposit, withdraw = 0, 0
+    for i, elem in enumerate(log_list):
+        if i % 2 == 0 and elem == "D":
+            deposit += int(log_list[i+1])
+        elif i % 2 == 0 and elem == "W":
+            withdraw += int(log_list[i+1])
+    return deposit - withdraw
+
+
+if __name__ == "__main__":
+    log_list = transaction_log.split()
+    if check_valid_transaction_log(log_list):
+        net_amount = compute_current_net(log_list)
+        print(f'Transaction log is valid and the current net amount is {net_amount}')
+    else:
+        print("The transaction log is invalid or corrupt. Rebuild file before proceeding.")
+```
+
+---
+
+## Question 18
+
+A website requires the users to input username and password to register. Write a program to check the validity of password input by users. Following are the criteria for checking the password:
+
+1. At least 1 letter between [a-z]
+1. At least 1 number between [0-9]
+1. At least 1 letter between [A-Z]
+1. At least 1 character from [$#@]
+1. Minimum length of transaction password: 6
+1. Maximum length of transaction password: 12
+
+Your program should accept a sequence of comma separated passwords and will check them according to the above criteria. Passwords that match the criteria are to be printed, each separated by a comma.
+
+Example: If the following passwords are given as input to the program: ABd1234@1,a F1#,2w3E\*,2We3345,4Jr4#175 Then, the output of the program should be: ABd1234@1,4Jr4#175
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Use a regular expression for this task.
+
+Solution:
+
 ```py
 
 ```
