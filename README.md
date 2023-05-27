@@ -823,6 +823,7 @@ A website requires the users to input username and password to register. Write a
 1. At least 1 character from [$#@]
 1. Minimum length of transaction password: 6
 1. Maximum length of transaction password: 12
+1. No whitespaces allowed in password
 
 Your program should accept a sequence of comma separated passwords and will check them according to the above criteria. Passwords that match the criteria are to be printed, each separated by a comma.
 
@@ -831,9 +832,35 @@ Example: If the following passwords are given as input to the program: ABd1234@1
 Hints:
 
 1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Check for leading and trailing commas and/or whitespaces and eliminate them if there;
 1. Use a regular expression for this task.
 
 Solution:
+
+```py
+import re
+
+
+def test_whitespaces(elem):
+    return True if " " not in elem else False
+
+
+def test_password(password_str):
+    pattern = r'^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[$#@]).{6,12}$'
+    return re.match(pattern, password_str)
+
+
+if __name__ == "__main__":
+    passwords_csv = "ABd1234@1,a F1#,2w3E\*,2We3345,4Jr4#175"
+    pwd_list = [i for i in passwords_csv.split(",") if test_whitespaces(i)]
+    results = ",".join([elem for elem in pwd_list if elem != "" and test_password(elem.strip())])
+    print(results)
+
+```
+
+---
+
+## Question 19
 
 ```py
 
