@@ -905,8 +905,48 @@ if __name__ == "__main__":
 
 ## Question 20
 
-```py
+Define a class with a generator expression or a generator function which can iterate the numbers, which are divisible by 7, between a given range 0 and n.
 
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add input validation to ensure that the inputted data is an integer;
+1. While you can put the input gathering and validation functions in the class, you may want to separate the (separation of concerns) as this will make the main class more reusable;
+1. A generator expression is like a list comprehension but generates values one at a time, while the list comprehension generates it before iteration;
+1. A generator function is a special type of function that when called returns a generator objectand uses the yield statement to return a series of values on-demand, instead of a single value or a sequence of values computed at once, making it more memory efficient when dealing with large quantities of values and it also allows more complex logic;
+1. This solution uses a generator expression.
+
+Solution:
+
+```py
+def validate_n(n):
+        return True if n.isdigit() else False
+
+
+def get_input():
+    n = input("Please input an integer:\t")
+    while True:
+        if not validate_n(n):
+            n = input("Invalid input. Please input an integer:\t")
+        else:
+            break
+    return int(n)
+
+
+
+class Divisible_by_Seven:
+
+    def __init__(self):
+        self.n = get_input()
+
+    def generate_divisible_n(self):
+        print(list((i for i in range(1, self.n) if i % 7 == 0)))
+
+
+
+if __name__ == "__main__":
+    new_seven = Divisible_by_Seven()
+    new_seven.generate_divisible_n()
 ```
 
 ---
