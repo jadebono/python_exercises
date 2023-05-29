@@ -950,3 +950,99 @@ if __name__ == "__main__":
 ```
 
 ---
+
+## Question 21
+
+A robot moves on a 2D (Cartesian) plane starting from the original point (0,0). The robot can move toward UP, DOWN, LEFT and RIGHT with a given steps. The trace of robot movement is shown as the following: UP 5 DOWN 3 LEFT 3 RIGHT 2
+
+The numbers after the direction are steps. Please write a program to compute the distance from current position after a sequence of movement to the original point. If the distance is a float, then just print the nearest integer.
+
+Example: If the following instructions are given as input to the program: UP 5 DOWN 3 LEFT 3 RIGHT 2 Then, the output of the program should be: 2
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add input validation;
+1. To find the distance between (x1, y1) and (x2, y2) Use this formula: d= √((x2−x1)**2+(y2−y1)**2);
+1. Don't forget to round it to the nearest integer.
+
+Solution:
+
+```py
+import math
+
+
+def ask_coordinates():
+    directions = ["UP", "DOWN", "LEFT", "RIGHT"]
+    coords = []
+    for direction in directions:
+        coords.append(input(f'Please input a distance for the robot to go {direction}:\n'))
+    return coords
+
+
+def get_input():
+    try:
+        coords = ask_coordinates()
+        x_two = int(coords[3]) - int(coords[2])
+        y_two = int(coords[0]) - int(coords[1])
+        return x_two, y_two
+    except Exception:
+        print("One or more of your inputs are invalid. Please try again.")
+        x_two, y_two = get_input()
+        return x_two, y_two
+
+
+
+def compute_distance(X_ONE, Y_ONE):
+    return round(math.sqrt(((x_two - X_ONE)**2) + ((y_two - Y_ONE)**2)))
+
+
+if __name__ == "__main__":
+    X_ONE, Y_ONE = 0, 0
+    x_two, y_two = get_input()
+    print(f'The distance from the origin to your provided coordinates is: {compute_distance(X_ONE, Y_ONE)}')
+```
+
+---
+
+## Question 22
+
+Write a program to compute the frequency of the words from the input. The output should be sorted by the key alphanumerically in ascending order. Suppose the following input is supplied to the program: "New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3." Then, the output should be: 2:2 3.:1 3?:1 New:1 Python:5 Read:1 and:1 between:1 choosing:1 or:2 to:1
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Sort in ascending order;
+1. Do not allow for case sensitivity, in other words Python and python should be counted as separate keys in the object;
+1. Do not separate punctuation, in other words 3 3? and 3. should be counted as separate keys;
+1. Importing collections and using collections.Counter will return a counter object with each element counted, which value you can then access using the counter[elem] key;
+1. Output as a JSON object;
+
+```py
+import collections
+import json
+
+def acquire_input():
+    return input("Please input a string. Your input will be transformed into a JSON object with each key pair counting the number of times a unique word is present:\t")
+
+
+if __name__ == "__main__":
+    input_string = acquire_input()
+    input_set = sorted(set((input_string.split())))
+    my_dic = {}
+    counter = collections.Counter(input_string.split())
+    for elem in input_set:
+        my_dic[elem] = counter[elem]
+    json_dic = json.dumps(my_dic)
+    print(json_dic)
+```
+
+---
+
+## Question 23
+
+```py
+
+```
+
+---
