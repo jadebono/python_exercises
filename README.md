@@ -862,6 +862,49 @@ if __name__ == "__main__":
 
 ## Question 19
 
+You are required to write a program to sort the (name, age, height) arrays by ascending order where name is string, age and height are numbers. The arrays are input by console.
+
+The sort criteria are:
+
+Sort based on name;  
+Then sort based on age;  
+Then sort by score.
+
+The priority is that name > age > score. If the following arrays are given as input to the program: Tom,19,80 John,20,90 Jony,17,91 Jony,16,91 Jony,17,93 Jason,21,85
+
+Then, the output of the program should be: [ [ 'Jason', '21', '85' ],[ 'John', '20', '90' ],[ 'Jony', '16', '91' ],[ 'Jony', '17', '91' ],[ 'Jony', '17', '93' ],[ 'Tom', '19', '80' ]]
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+
+Solution:
+
+```py
+player_input = "Tom,19,80 John,20,90 Jony,17,91 Jony,16,91 Jony,17,93 Jason,21,85"
+
+# takes a list and returns a tuple in the following sequence: (name, age, score)
+def sort_seq(player):
+    return (player[0], int(player[1]), int(player[2]))
+
+
+def list_creator(player_input):
+    players = [i.split(",") for i in player_input.split()]
+    # use the sort_seq function for the sorting key of sorted
+    sorted_players = sorted(players, key=sort_seq)
+    return sorted_players
+
+
+if __name__ == "__main__":
+    player_list = list_creator(player_input)
+    print(player_list)
+
+```
+
+---
+
+## Question 20
+
 ```py
 
 ```
