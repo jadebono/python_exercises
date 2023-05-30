@@ -1079,6 +1079,39 @@ if __name__ == "__main__":
 
 ## Question 24
 
+Define a class, with both a class parameter and instance parameter/s. Optionally, you may create a method to print out all these parameters.
+
+Hints:
+
+1. Class parameter/s are defined beneath the class declaration outside any class methods;
+1. Instance parameter/s are defined in the class methods.
+
+Solution:
+
+```py
+class Human:
+    species = "Homo Sapiens"
+
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+
+    def print_attributes(self):
+        print(f'This is the class parameter: {self.species}')
+        print(f'This is the first instance parameter: {self.name}')
+        print(f'This is the second instance parameter: {self.surname}')
+
+
+if __name__ == "__main__":
+        joe = Human("Joseph", "Debono")
+        joe.print_attributes()
+
+```
+
+---
+
+## Question 25
+
 ```py
 
 ```
