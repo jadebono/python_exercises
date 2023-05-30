@@ -1012,6 +1012,7 @@ Write a program to compute the frequency of the words from the input. The output
 Hints:
 
 1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Any input is acceptable here so no input validation is necessary;
 1. Sort in ascending order;
 1. Do not allow for case sensitivity, in other words Python and python should be counted as separate keys in the object;
 1. Do not separate punctuation, in other words 3 3? and 3. should be counted as separate keys;
@@ -1040,6 +1041,43 @@ if __name__ == "__main__":
 ---
 
 ## Question 23
+
+Write a function that can calculate square value of number
+
+Hints:
+
+1. Use the \*\* operator
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add input validation;
+1. In this case, the method isdigit() on str enables the user to check that input is a digit directly without the need for external function.
+
+Solution:
+
+```py
+
+def acquire_input():
+    user_input = input("Please input a number to square. Only integers will be accepted.:\t")
+    while True:
+        if not str.isdigit(user_input):
+            user_input = input("Invalid input, please try again:\t")
+        else:
+            break
+    return int(user_input)
+
+
+def square_n(n):
+    return n ** 2
+
+
+if __name__ == "__main__":
+    n = acquire_input()
+    square_my_n = square_n(n)
+    print(square_my_n)
+```
+
+---
+
+## Question 24
 
 ```py
 
