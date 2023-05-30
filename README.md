@@ -1112,6 +1112,41 @@ if __name__ == "__main__":
 
 ## Question 25
 
+Define a function that can compute and return the sum of two numbers.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add input validation.
+
+Solution:
+
+```py
+def acquire_input():
+    n = input("Please input a number to add to another number. Only integers accepted:\t")
+    while True:
+        if not n.isdigit():
+            n = input("Invalid input. Please input a valid integer:\t")
+        else:
+            break
+    return int(n)
+
+
+def add_numbers(a, b):
+    return a + b
+
+
+if __name__ == "__main__":
+        a = acquire_input()
+        b = acquire_input()
+        c = add_numbers(a,b)
+        print(f'the total of {a} + {b} = {c}')
+```
+
+---
+
+## Question 26
+
 ```py
 
 ```
