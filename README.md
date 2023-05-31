@@ -1122,30 +1122,102 @@ Hints:
 Solution:
 
 ```py
-def acquire_input():
-    n = input("Please input a number to add to another number. Only integers accepted:\t")
-    while True:
-        if not n.isdigit():
-            n = input("Invalid input. Please input a valid integer:\t")
-        else:
-            break
-    return int(n)
+def acquire_input(prompt_message):
+    try:
+        n = input(prompt_message)
+        return int(n) if n.isdigit() else acquire_input(f'Invalid input! {prompt_message}')
+    except Exception:
+        acquire_input(f'Invalid input! {prompt_message}')
 
 
-def add_numbers(a, b):
-    return a + b
+def add_numbers():
+    a = acquire_input("Please input the first of two numbers to add together:\t")
+    b = acquire_input("Please input the second of two numbers to add together:\t")
+    return f'The total of {a} + {b} = {a + b}'
 
 
 if __name__ == "__main__":
-        a = acquire_input()
-        b = acquire_input()
-        c = add_numbers(a,b)
-        print(f'the total of {a} + {b} = {c}')
+        result = add_numbers()
+        print(result)
+
+
 ```
 
 ---
 
 ## Question 26
+
+Define a function that can convert a string into an integer and print it in console.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add input validation.
+
+Solution:
+
+```py
+def get_input():
+    integerized_string = input("please input an integer to convert from type string to type int:\t")
+    while True:
+        if not integerized_string.isdigit():
+            integerized_string = input("Your input cannot be converted to an integer. Please try again:\t")
+        else:
+            break
+    return int(integerized_string)
+
+
+if __name__ == "__main__":
+        int_my_string = get_input()
+        print(f'Your input is {int_my_string} and it is of type {type(int_my_string)}')
+```
+
+---
+
+## Question 27
+
+Define a function that can receive two integral numbers in string form and compute their sum and then print it in console.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. Add validation if you do take the user's input;
+1. Add functionality to check if the number is a float and if so first rount it and then convert it to an integer
+
+Solution:
+
+```py
+def is_float(num):
+    try:
+        num = float(num)
+    except Exception:
+        return False
+    return True
+
+def acquire_input(prompt_message):
+    user_input = input(prompt_message)
+    while True:
+        if not user_input.isdigit() and not is_float(n):
+            user_input = input("You have not inputted a valid integer or float. Please do so:\t")
+        else:
+            user_input = int(round(float(user_input)))
+            break
+    return user_input
+
+def add_ints(a, b):
+    return a + b
+
+
+if __name__ == "__main__":
+    a = acquire_input("Please input the first int to add (floats are also accepted but will be rounded):\t")
+    b = acquire_input("Please input the second int to add (floats are also accepted but will be rounded):\t")
+    sum_a_b = add_ints(a, b)
+    print(sum_a_b)
+```
+
+---
+
+## Question 28
 
 ```py
 
