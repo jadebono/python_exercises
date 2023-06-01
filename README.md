@@ -1219,6 +1219,27 @@ if __name__ == "__main__":
 
 ## Question 28
 
+Define a function that can accept two strings as input and concatenate them and then print it in console.
+
+Hints:
+
+1. In case of input data being supplied to the question, it should be assumed to come from the input() function;
+1. This input does not need input validation as any input is acceptable.
+
+Solution:
+
+```py
+if __name__ == "__main__":
+    str_a = input("Please input the first string to concatenate to a second one:\t")
+    str_b = input("Please input the second string to concatenate to a first one:\t")
+    my_concatenated_string = str_a + str_b
+    print(my_concatenated_string)
+```
+
+---
+
+## Question 29
+
 ```py
 
 ```
