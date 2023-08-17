@@ -1,4 +1,4 @@
-# 100 Python Exercises in Object Oriented Programming
+# `100 Python Exercises in Object Oriented Programming``
 
 Adapted from the [Python Exercises of Jeffrey Hu](https://github.com/zhiwehu/Python-programming-exercises).
 [Github: Jeffrey Hu](https://github.com/zhiwehu)

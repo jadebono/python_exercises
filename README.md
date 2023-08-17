@@ -1,4 +1,4 @@
-# 100 Python Exercises
+# `100 Python Exercises`
 
 Adapted from the [Python Exercises of Jeffrey Hu](https://github.com/zhiwehu/Python-programming-exercises).
 [Github: Jeffrey Hu](https://github.com/zhiwehu)
